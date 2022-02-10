@@ -1,2 +1,6 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1><%= t('views.heading.home') %></h1>
+<%= link_to t('views.common.index', name: User.model_name.human), users_path %>
+
+<br>
+
+<%= link_to t('views.common.index', name: Book.model_name.human), books_path %>

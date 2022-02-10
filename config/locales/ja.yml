@@ -215,6 +215,7 @@ ja:
       delete_confirm: よろしいですか？
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      index: "%{name}の一覧"
     pagination:
       first: '最初'
       last: '最後'
@@ -223,6 +224,8 @@ ja:
       truncate: '...'
     devise:
       log_out: ログアウト
+    heading:
+      home: ホーム
   controllers:
     common:
       notice_create: "%{name}が作成されました。"
