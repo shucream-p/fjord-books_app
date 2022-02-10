@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   devise_for :users, controllers: {
     sessions: "users/sessions",
-    registrantions: "users/registrantions"
+    registrations: "users/registrations"
   }
   resources :books
   resources :users, only: [:index, :show]
