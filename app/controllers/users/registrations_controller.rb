@@ -44,9 +44,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-    def after_update_path_for(resource)
-      user_path(@user)
-    end
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
