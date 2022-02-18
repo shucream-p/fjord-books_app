@@ -1,0 +1,12 @@
+<h1><%= User.model_name.human %></h1>
+
+<% @users.each do |user| %>
+  <%= link_to user.name, user %>
+  <br>
+<% end %>
+
+<%= paginate @users %>
+
+<br>
+
+<%= link_to t('views.common.back'), root_path %>
