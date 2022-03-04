@@ -8,6 +8,16 @@
   <%= @report.content %>
 </p>
 
+<p>
+  <strong>User:</strong>
+  <%= link_to @report.user.name, user_path(@report.user) %>
+</p>
+
+<p>
+  <strong>Created Date</strong>
+  <%= @report.created_at.to_s(:datetime_jp) %>
+</p>
+
 <% if current_user == @report.user %>
   <%= link_to 'Edit', edit_report_path(@report) %> |
 <% end %>
