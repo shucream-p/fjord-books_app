@@ -1,0 +1,35 @@
+<h2>Comment</h2>
+<% commentable.comments.each do |comment| %>
+  <p>
+    <strong>Content:</strong>
+    <%= comment.content %>
+  </p>
+
+  <p>
+    <% if comment.user.name.blank? %>
+      <strong>Email:</strong>
+      <%= link_to comment.user.email, comment.user %>
+    <% else %>
+      <strong>User:</strong>
+      <%= link_to comment.user.name, comment.user %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Created Date:</strong>
+    <%= comment.created_at.to_s(:datetime_jp) %>
+  </p>
+
+  <br>
+<% end %>
+
+<%= form_with(model: [commentable, Comment.new]) do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, required: true %>
+  </div>
+
+  <div class="action">
+    <%= form.submit %>
+  </div>
+<% end %>

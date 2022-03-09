@@ -14,9 +14,11 @@
 </p>
 
 <p>
-  <strong>Created Date</strong>
+  <strong>Created Date:</strong>
   <%= @report.created_at.to_s(:datetime_jp) %>
 </p>
+
+<%= render partial: 'comments/form', locals: { commentable: @report } %>
 
 <% if current_user == @report.user %>
   <%= link_to 'Edit', edit_report_path(@report) %> |
