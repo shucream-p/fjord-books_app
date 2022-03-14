@@ -18,7 +18,8 @@
   <%= @report.created_at.to_s(:datetime_jp) %>
 </p>
 
-<%= render partial: 'comments/form', locals: { commentable: @report } %>
+<%= render partial: 'comments/index', locals: { commentable: @report } %>
+<%= render partial: 'comments/form', locals: { commentable: @report, comment: Comment.new } %>
 
 <% if current_user == @report.user %>
   <%= link_to 'Edit', edit_report_path(@report) %> |
