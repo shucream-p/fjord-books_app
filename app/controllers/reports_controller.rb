@@ -3,12 +3,12 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.all
+    @reports = Report.includes(:user).all
   end
 
   # GET /reports/1 or /reports/1.json
   def show
-    @report = Report.find(params[:id])
+    @report = Report.includes(comments: :user).find(params[:id])
   end
 
   # GET /reports/new
