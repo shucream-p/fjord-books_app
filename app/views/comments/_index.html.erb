@@ -1,35 +1,35 @@
-<h2>Comment</h2>
+<h2><%= Comment.model_name.human %></h2>
 <% if commentable.comments.present? %>
   <% commentable.comments.each do |comment| %>
     <p>
-      <strong>Content:</strong>
+      <strong><%= Comment.human_attribute_name(:content) %>:</strong>
       <%= comment.content %>
     </p>
 
     <p>
       <% if comment.user.name.blank? %>
-        <strong>Email:</strong>
+        <strong><%= Comment.human_attribute_name(:email) %>:</strong>
         <%= link_to comment.user.email, comment.user %>
       <% else %>
-        <strong>User:</strong>
+        <strong><%= Comment.human_attribute_name(:user) %>:</strong>
         <%= link_to comment.user.name, comment.user %>
       <% end %>
     </p>
 
     <p>
-      <strong>Created Date:</strong>
+      <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
       <%= comment.created_at.to_s(:datetime_jp) %>
     </p>
 
     <% if current_user == comment.user %>
       <p>
-        <%= link_to 'edit', edit_polymorphic_path([commentable, comment]) %> |
-        <%= link_to 'destroy', polymorphic_path([commentable, comment]), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to t('views.common.edit'), edit_polymorphic_path([commentable, comment]) %> |
+        <%= link_to t('views.common.destroy'), polymorphic_path([commentable, comment]), method: :delete, data: { confirm: t('views.common.delete_confirm') } %>
       </p>
     <% end %>
 
     <br>
   <% end %>
 <% else %>
-  <p>No comment</p>
+  <p><%= t('comments.no_comment') %></p>
 <% end %>
