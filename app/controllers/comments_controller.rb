@@ -4,8 +4,13 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    @comment.save!
-    redirect_to @commentable, notice: 'Comment was successfully created.'
+    
+    if @comment.save
+      redirect_to @commentable, notice: 'Comment was successfully created.'
+    else
+      flash.now[:alert] = 'Please enter the content.'
+      render @template
+    end
   end
 
   def edit; end
