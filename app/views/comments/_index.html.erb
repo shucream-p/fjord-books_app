@@ -1,31 +1,35 @@
 <h2>Comment</h2>
-<% commentable.comments.each do |comment| %>
-  <p>
-    <strong>Content:</strong>
-    <%= comment.content %>
-  </p>
-
-  <p>
-    <% if comment.user.name.blank? %>
-      <strong>Email:</strong>
-      <%= link_to comment.user.email, comment.user %>
-    <% else %>
-      <strong>User:</strong>
-      <%= link_to comment.user.name, comment.user %>
-    <% end %>
-  </p>
-
-  <p>
-    <strong>Created Date:</strong>
-    <%= comment.created_at.to_s(:datetime_jp) %>
-  </p>
-
-  <% if current_user == comment.user %>
+<% if commentable.comments.present? %>
+  <% commentable.comments.each do |comment| %>
     <p>
-      <%= link_to 'edit', edit_polymorphic_path([commentable, comment]) %> |
-      <%= link_to 'destroy', polymorphic_path([commentable, comment]), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <strong>Content:</strong>
+      <%= comment.content %>
     </p>
-  <% end %>
 
-  <br>
+    <p>
+      <% if comment.user.name.blank? %>
+        <strong>Email:</strong>
+        <%= link_to comment.user.email, comment.user %>
+      <% else %>
+        <strong>User:</strong>
+        <%= link_to comment.user.name, comment.user %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Created Date:</strong>
+      <%= comment.created_at.to_s(:datetime_jp) %>
+    </p>
+
+    <% if current_user == comment.user %>
+      <p>
+        <%= link_to 'edit', edit_polymorphic_path([commentable, comment]) %> |
+        <%= link_to 'destroy', polymorphic_path([commentable, comment]), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    <% end %>
+
+    <br>
+  <% end %>
+<% else %>
+  <p>No comment</p>
 <% end %>
