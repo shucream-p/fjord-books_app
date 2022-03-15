@@ -1,7 +1,6 @@
-class Reports::CommentsController < CommentsController
-  before_action :set_commentable, except: %i[index new show]
-  before_action :set_render, only: :create
+# frozen_string_literal: true
 
+class Reports::CommentsController < CommentsController
   private
 
   def set_commentable

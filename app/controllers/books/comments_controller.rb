@@ -1,7 +1,6 @@
-class Books::CommentsController < CommentsController
-  before_action :set_commentable, except: %i[index new show]
-  before_action :set_render, only: :create
+# frozen_string_literal: true
 
+class Books::CommentsController < CommentsController
   private
 
   def set_commentable

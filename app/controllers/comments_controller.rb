@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
+  before_action :set_commentable, only: %i[create edit update destroy]
+  before_action :set_render, only: :create
   before_action :set_comment, only: %i[edit update destroy]
-  
+
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    
+
     if @comment.save
       redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
     else
@@ -14,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def edit; end
-  
+
   def update
     @comment.update(comment_params)
     redirect_to @commentable, notice: t('controllers.common.notice_update', name: Comment.model_name.human)
